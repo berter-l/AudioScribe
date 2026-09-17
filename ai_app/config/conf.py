@@ -1,6 +1,6 @@
 from pydantic_settings import BaseSettings
 
-from config.celery_consumer_conf import RabbitMQConfig
+from config.rabbitmq_conf import RabbitMQConfig
 from config.whisper_ai_conf import WhisperConfig
 
 
