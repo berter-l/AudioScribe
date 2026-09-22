@@ -54,31 +54,31 @@ api_key в коде или переменных окружения оркест�
 Для управления настройками используются конфигурационные файлы Pydantic Settings внутри каждого сервиса.
 
 ### Настройки Базы Данных (orchestrator/app/config/db_conf.py)
-— `port`: Порт PostgreSQL (по умолчанию 5432)
-— `username`: Имя пользователя БД
-— `password`: Пароль пользователя БД
-— `host`: Хост базы данных
-— `database_name`: Имя базы данных
+* — `port`: Порт PostgreSQL (по умолчанию 5432)
+* — `username`: Имя пользователя БД
+* — `password`: Пароль пользователя БД
+* — `host`: Хост базы данных
+* — `database_name`: Имя базы данных
 
 ### Настройки RabbitMQ (orchestrator/app/config/rabbitmq_conf.py, ai_app/config/rabbitmq_conf.py)
-— `port`: Порт RabbitMQ (по умолчанию 5672)
-— `host`: Хост брокера сообщений
-— `username`: Имя пользователя брокера
-— `password`: Пароль пользователя брокера
+* — `port`: Порт RabbitMQ (по умолчанию 5672)
+* — `host`: Хост брокера сообщений
+* — `username`: Имя пользователя брокера
+* — `password`: Пароль пользователя брокера
 
 ### Настройки S3 Хранилища (orchestrator/app/config/s3_conf.py, ai_app/config/s3_conf.py)
-— `region_name`: Регион S3 (например, ru-central-1)
-— `aws_access_key_id`: Идентификатор ключа доступа
-— `aws_secret_access_key`: Секретный ключ доступа
-— `tenant_id`: Идентификатор тенанта (при необходимости)
-— `bucket_name`: Имя бакета для аудиофайлов
-— `domain_bucket_name`: Доменное имя бакета для генерации публичных ссылок
+* — `region_name`: Регион S3 (например, ru-central-1)
+* — `aws_access_key_id`: Идентификатор ключа доступа
+* — `aws_secret_access_key`: Секретный ключ доступа
+* — `tenant_id`: Идентификатор тенанта (при необходимости)
+* — `bucket_name`: Имя бакета для аудиофайлов
+* — `domain_bucket_name`: Доменное имя бакета для генерации публичных ссылок
 
 ### Настройки Whisper AI (ai_app/config/whisper_ai_conf.py)
-— `model_name`: Размер используемой модели (по умолчанию small)
-— `number_of_threads`: Количество выделенных CPU потоков (по умолчанию 10)
-— `device_type`: Тип устройства для вычислений (cpu или cuda)
-— `compute_type`: Тип точности данных (по умолчанию int8)
+* — `model_name`: Размер используемой модели (по умолчанию small)
+* — `number_of_threads`: Количество выделенных CPU потоков (по умолчанию 10)
+* — `device_type`: Тип устройства для вычислений (cpu или cuda)
+* — `compute_type`: Тип точности данных (по умолчанию int8)
 
 ## Быстрый старт через Docker Compose
 
@@ -93,12 +93,12 @@ docker-compose up --build
 ```
 
 Docker Compose автоматически соберет и запустит следующие контейнеры:
-— `db`: СУБД PostgreSQL 18.6
-— `rabbitmq`: Брокер сообщений RabbitMQ 3.11
-— `orchestrator`: Основной бэкенд на порту 8000
-— `main_app`: Фронтенд-интерфейс на порту 9000
-— `whisper_ai_app`: Celery-воркер для транскрибации
-— `tg_bot_app`: Бот для взаимодействия через Telegram
+* — `db`: СУБД PostgreSQL 18.6
+* — `rabbitmq`: Брокер сообщений RabbitMQ 3.11
+* — `orchestrator`: Основной бэкенд на порту 8000
+* — `main_app`: Фронтенд-интерфейс на порту 9000
+* — `whisper_ai_app`: Celery-воркер для транскрибации
+* — `tg_bot_app`: Бот для взаимодействия через Telegram
 
 ## Установка браузерного расширения
 
