@@ -1,0 +1,101 @@
+services:
+
+  whisper_ai_app:
+    build:
+      context: ./ai_app
+      dockerfile: Dockerfile_whisper_ai
+
+    image: ai_app
+
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  tg_bot_app:
+    build:
+      context: ./tg_app
+      dockerfile: Dockerfile_tg_bot
+    image: tg_app
+
+    depends_on:
+      orchestrator:
+        condition: service_started
+
+  orchestrator:
+    build:
+      context: ./orchestrator
+      dockerfile: Dockerfile_orchestrator
+
+    image: orchestrator_app
+
+    container_name: orchestrator_app
+
+    ports:
+      - "8000:8000"
+    depends_on:
+      pg_db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  main_app:
+    build:
+      context: main_app/
+      dockerfile: Dockerfile_main_app
+
+    image: main_app
+    container_name: main_app
+    ports:
+      - "9000:8000"
+    depends_on:
+      pg_db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+
+  pg_db:
+    image: postgres:18.6
+
+    environment:
+      - POSTGRES_USER=main_db
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=audio_transcription
+
+    container_name: db
+
+    volumes:
+      - db_volume:/var/lib/postgresql
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "main_db"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+
+
+  rabbitmq:
+    image: rabbitmq:3.11
+
+    container_name: rabbitmq_query
+
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+
+volumes:
+  db_volume:
+  rabbitmq_data:

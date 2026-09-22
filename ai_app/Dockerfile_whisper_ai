@@ -1,0 +1,13 @@
+FROM python:3.11.16-slim
+
+WORKDIR ai_app
+
+COPY pyproject.toml .
+
+COPY uv.lock .
+
+RUN pip install --no-cache uv && uv sync
+
+COPY . .
+
+CMD ["uv", "run", "celery", "-A", "main", "worker", "--pool=threads","--concurrency=1", "--loglevel=info"]

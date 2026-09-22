@@ -1,6 +1,6 @@
-FROM python:3.11.16-slim
+FROM python:3.11-alpine3.23
 
-WORKDIR orchestrator_app
+WORKDIR tg_app
 
 COPY pyproject.toml .
 
@@ -11,6 +11,3 @@ RUN pip install --no-cache uv && uv sync
 COPY . .
 
 CMD ["uv", "run", "main.py"]
-
-
-
