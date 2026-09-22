@@ -93,12 +93,12 @@ docker-compose up --build
 ```
 
 Docker Compose автоматически соберет и запустит следующие контейнеры:
-* — `db`: СУБД PostgreSQL 18.6
-* — `rabbitmq`: Брокер сообщений RabbitMQ 3.11
-* — `orchestrator`: Основной бэкенд на порту 8000
-* — `main_app`: Фронтенд-интерфейс на порту 9000
-* — `whisper_ai_app`: Celery-воркер для транскрибации
-* — `tg_bot_app`: Бот для взаимодействия через Telegram
+1. — `db`: СУБД PostgreSQL 18.6
+2. — `rabbitmq`: Брокер сообщений RabbitMQ 3.11
+3. — `orchestrator`: Основной бэкенд на порту 8000
+4. — `main_app`: Фронтенд-интерфейс на порту 9000
+5. — `whisper_ai_app`: Celery-воркер для транскрибации
+6. — `tg_bot_app`: Бот для взаимодействия через Telegram
 
 ## Установка браузерного расширения
 
